@@ -1,21 +1,54 @@
 ﻿@inherits LayoutComponentBase
 
-<MudThemeProvider/>
+@code{
+    private void NavigateTo(string route)
+    {
+    // Implement navigation logic here
+    // For example, use NavigationManager to navigate to different pages/components
+    }
+}
+
+<MudThemeProvider IsDarkMode="true"/>
 <MudDialogProvider/>
 <MudSnackbarProvider/>
 
 <div class="page">
-    <div class="sidebar">
-        <NavMenu />
-    </div>
-
     <main>
-        <div class="top-row px-4">
-            <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
-        </div>
-
         <article class="content px-4">
             @Body
         </article>
     </main>
+    
+    <footer class="nav-bar">
+        <MudButton OnClick="@(() => NavigateTo("home"))" StartIcon="@Icons.Material.Filled.Home">
+            <span class="nav-text">Home</span>
+        </MudButton>
+        <MudButton OnClick="@(() => NavigateTo("search"))" StartIcon="@Icons.Material.Filled.Search">
+            <span class="nav-text">Search</span>
+        </MudButton>
+        <MudButton OnClick="@(() => NavigateTo("notifications"))" StartIcon="@Icons.Material.Filled.Notifications">
+            <span class="nav-text">Notifications</span>
+        </MudButton>
+        <MudButton OnClick="@(() => NavigateTo("profile"))" StartIcon="@Icons.Material.Filled.AccountCircle">
+            <span class="nav-text">Profile</span>
+        </MudButton>
+    </footer>
+    
+    @* <footer>
+        <MudTabs>
+            <MudTabPanel Icon="@Icons.Material.Filled.Home">
+                <span class="tab-icon-text">Home</span>
+            </MudTabPanel>
+            <MudTabPanel Icon="@Icons.Material.Filled.Search">
+                <span class="tab-icon-text">Search</span>
+            </MudTabPanel>
+            <MudTabPanel Icon="@Icons.Material.Filled.Notifications">
+                <span class="tab-icon-text">Notifications</span>
+            </MudTabPanel>
+            <MudTabPanel Icon="@Icons.Material.Filled.AccountCircle">
+                <span class="tab-icon-text">Profile</span>
+            </MudTabPanel>
+        </MudTabs>
+    </footer>
+ *@
 </div>
