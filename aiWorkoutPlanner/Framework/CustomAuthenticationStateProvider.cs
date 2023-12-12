@@ -11,7 +11,7 @@ namespace aiWorkoutPlanner.Framework
             var identity = new ClaimsIdentity();
             var token = await SecureStorage.GetAsync("auth_token");
 
-            if (!string.IsNullOrEmpty(token) || !token.Equals("0"))
+            if (!string.IsNullOrEmpty(token) && !token.Equals("0"))
             {
                 identity = new ClaimsIdentity(ParseClaimsFromJwt(token), "jwt");
             }
