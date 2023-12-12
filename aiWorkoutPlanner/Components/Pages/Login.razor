@@ -1,24 +1,78 @@
 ﻿@page "/login"
+@using Microsoft.AspNetCore.Components.Authorization
+@using aiWorkoutPlanner.Framework
+@inject AuthenticationStateProvider AuthenticationStateProvider
+
 
 @code {
     private string username;
     private string password;
+    private bool isLoginFailed = false;
 
-    private void DoLogin()
+    private AuthenticationState authState;
+    private bool IsUserAuthenticated;
+    
+    protected override async Task OnInitializedAsync()
     {
-    // Handle login logic here
+        authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        IsUserAuthenticated = authState.User.Identity.IsAuthenticated;
     }
+
+    private async Task DoLogin()
+    {
+        var loginDto = new NativeLogin.LoginDto
+        {
+            Username = username,
+            Password = password
+        };
+
+        var loginService = new NativeLogin();
+        var jwtToken = await loginService.LoginUser(loginDto);
+
+        if (!string.IsNullOrEmpty(jwtToken))
+        {
+            // Here, pass the JWT token to MarkUserAsAuthenticated
+            await ((CustomAuthenticationStateProvider)AuthenticationStateProvider).MarkUserAsAuthenticated(username, jwtToken);
+            isLoginFailed = false;
+            // Optionally, navigate to the home page or dashboard
+        }
+        else
+        {
+            int a = 0;
+            isLoginFailed = true;
+            // Handle login failure (e.g., show error message)
+        }
+    }
+
+    private async Task DoLogout()
+    {
+        await ((CustomAuthenticationStateProvider)AuthenticationStateProvider).MarkUserAsLoggedOut();
+    }
+
 }
 <PageTitle>Login</PageTitle>
 
-<div class="login-container">
-    <MudPaper Class="ma-4 p-4" Elevation="5">
-        <MudText Typo="Typo.h5" GutterBottom="true">Login</MudText>
-        <MudForm>
-            <MudTextField Label="Username" Variant="Variant.Filled" FullWidth @bind-Value="@username" />
-             <MudTextField Label="Password" Variant="Variant.Filled" FullWidth @bind-Value="@password" InputType="InputType.Password" />
-             <MudSpacer />
-             <MudButton Color="Color.Primary" Variant="Variant.Filled" Size="Size.Large" FullWidth OnClick="@DoLogin">Login</MudButton>
-         </MudForm>
-     </MudPaper>
- </div>
+@if (IsUserAuthenticated)
+{
+    <div id="usermanage">
+        <MudText>Authorised</MudText>
+        <MudButton Color="Color.Error" Variant="Variant.Filled" Size="Size.Large" OnClick="() => DoLogout()" FullWidth>Log Out</MudButton>
+    </div>    
+}
+else
+{
+    <div class="login-container">
+        <MudPaper Class="ma-4 p-4" Elevation="5">
+            <MudText Typo="Typo.h5" GutterBottom="true">Login</MudText>
+            <MudForm>
+                @if (isLoginFailed)
+                {
+                    <MudAlert Severity="Severity.Error">Invalid username or password</MudAlert>
+                }
+                <MudTextField Class="pb-1" Label="Username" Variant="Variant.Filled" FullWidth @bind-Value="@username"/>
+                <MudTextField Class="pb-4" Label="Password" Variant="Variant.Filled" FullWidth @bind-Value="@password" InputType="InputType.Password"/>
+                <MudButton Color="Color.Primary" Variant="Variant.Filled" Size="Size.Large" FullWidth OnClick="@DoLogin">Login</MudButton>
+            </MudForm>
+        </MudPaper>
+    </div>
+}

@@ -1,10 +1,13 @@
 ﻿@inherits LayoutComponentBase
+@inject NavigationManager NavigationManager
 
 @code{
     private void NavigateTo(string route)
     {
-        // Implement navigation logic here
-        // For example, use NavigationManager to navigate to different pages/components
+        if (!string.IsNullOrEmpty(route))
+        {
+            NavigationManager.NavigateTo(route);
+        }
     }
 }
 
@@ -20,16 +23,16 @@
     </main>
     
     <footer class="nav-bar">
-        <MudButton OnClick="@(() => NavigateTo("home"))" StartIcon="@Icons.Material.Filled.Home">
+        <MudButton OnClick="@(() => NavigateTo("/"))" StartIcon="@Icons.Material.Filled.Home">
             <span class="nav-text">Home</span>
         </MudButton>
-        <MudButton OnClick="@(() => NavigateTo("search"))" StartIcon="@Icons.Material.Filled.Search">
+        <MudButton OnClick="@(() => NavigateTo(""))" StartIcon="@Icons.Material.Filled.Search">
             <span class="nav-text">Search</span>
         </MudButton>
-        <MudButton OnClick="@(() => NavigateTo("notifications"))" StartIcon="@Icons.Material.Filled.Notifications">
+        <MudButton OnClick="@(() => NavigateTo(""))" StartIcon="@Icons.Material.Filled.Notifications">
             <span class="nav-text">Notifications</span>
         </MudButton>
-        <MudButton OnClick="@(() => NavigateTo("profile"))" StartIcon="@Icons.Material.Filled.AccountCircle">
+        <MudButton OnClick="@(() => NavigateTo("/Login"))" StartIcon="@Icons.Material.Filled.AccountCircle">
             <span class="nav-text">Profile</span>
         </MudButton>
     </footer>
