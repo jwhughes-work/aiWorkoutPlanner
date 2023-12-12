@@ -8,6 +8,7 @@
     private string username;
     private string password;
     private bool isLoginFailed = false;
+    private bool isSignup = false;
 
     private AuthenticationState authState;
     private bool IsUserAuthenticated;
@@ -34,6 +35,7 @@
             // Here, pass the JWT token to MarkUserAsAuthenticated
             await ((CustomAuthenticationStateProvider)AuthenticationStateProvider).MarkUserAsAuthenticated(username, jwtToken);
             isLoginFailed = false;
+            IsUserAuthenticated = true;
             // Optionally, navigate to the home page or dashboard
         }
         else
@@ -42,11 +44,15 @@
             isLoginFailed = true;
             // Handle login failure (e.g., show error message)
         }
+        
+        StateHasChanged();
     }
 
     private async Task DoLogout()
     {
         await ((CustomAuthenticationStateProvider)AuthenticationStateProvider).MarkUserAsLoggedOut();
+        IsUserAuthenticated = false;
+        StateHasChanged();
     }
 
 }
@@ -61,18 +67,38 @@
 }
 else
 {
-    <div class="login-container">
-        <MudPaper Class="ma-4 p-4" Elevation="5">
-            <MudText Typo="Typo.h5" GutterBottom="true">Login</MudText>
-            <MudForm>
-                @if (isLoginFailed)
-                {
-                    <MudAlert Severity="Severity.Error">Invalid username or password</MudAlert>
-                }
-                <MudTextField Class="pb-1" Label="Username" Variant="Variant.Filled" FullWidth @bind-Value="@username"/>
-                <MudTextField Class="pb-4" Label="Password" Variant="Variant.Filled" FullWidth @bind-Value="@password" InputType="InputType.Password"/>
-                <MudButton Color="Color.Primary" Variant="Variant.Filled" Size="Size.Large" FullWidth OnClick="@DoLogin">Login</MudButton>
-            </MudForm>
-        </MudPaper>
-    </div>
+    if (!isSignup)
+    {
+        <div class="login-container">
+            <MudPaper Class="ma-4 p-4" Elevation="5">
+                <MudText Typo="Typo.h5" GutterBottom="true">Login</MudText>
+                <MudForm>
+                    @if (isLoginFailed)
+                    {
+                        <MudAlert Severity="Severity.Error">Invalid username or password</MudAlert>
+                    }
+                    <MudTextField Class="mb-1" Label="Username" Variant="Variant.Filled" FullWidth @bind-Value="@username"/>
+                    <MudTextField Class="mb-3" Label="Password" Variant="Variant.Filled" FullWidth @bind-Value="@password" InputType="InputType.Password"/>
+                    <MudButton Color="Color.Primary" Variant="Variant.Filled" Size="Size.Large" FullWidth OnClick="@DoLogin">Login</MudButton>
+                </MudForm>
+                 <MudText Class="mt-2" Typo="Typo.body2">Dont have any account? <MudButton OnClick="() => isSignup = true" Variant="Variant.Text"><u>Sign up!</u></MudButton></MudText>
+            </MudPaper>
+        </div>
+    }
+    else
+    {
+        <div class="login-container">
+            <MudPaper Class="ma-4 p-4" Elevation="5">
+                <MudText Typo="Typo.h5" GutterBottom="true">Sign Up</MudText>
+                <MudForm>
+                    <MudTextField Class="mb-1" Label="First Name" Variant="Variant.Filled" FullWidth @bind-Value="@username" />
+                     <MudTextField Class="mb-1" Label="Email" Variant="Variant.Filled" FullWidth @bind-Value="@username" />
+                     <MudTextField Class="mb-1" Label="Username" Variant="Variant.Filled" FullWidth @bind-Value="@username" />
+                     <MudTextField Class="mb-3" Label="Password" Variant="Variant.Filled" FullWidth InputType="InputType.Password" @bind-Value="@password" />
+                    <MudButton Color="Color.Primary" Variant="Variant.Filled" Size="Size.Large" FullWidth>Sign Up</MudButton>
+                </MudForm>
+                 <MudText Class="mt-2" Typo="Typo.body2">Already have any account? <MudButton OnClick="() => isSignup = false" Variant="Variant.Text"><u>Login!</u></MudButton></MudText>
+             </MudPaper>
+         </div>
+    }
 }

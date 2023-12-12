@@ -11,15 +11,21 @@
 
         if (!user.Identity.IsAuthenticated)
         {
-            int a = 0;
-            //Navigation.NavigateTo("/Login");
+            Navigation.NavigateTo("/Login");
         }
+    }
+
+    private void CreateNew()
+    {
+        Navigation.NavigateTo("/Setup");
     }
 }
 
-<h1>Hello, world! new app</h1>
+<h1>Welcome to FitPA!</h1>
 
-Welcome to your new app.
+Welcome to your new fitness app.
+
+<MudButton Color="Color.Primary" Variant="Variant.Filled" Size="Size.Large" FullWidth OnClick="() => CreateNew()">Create New Workout Plan</MudButton>
 
 
 <MudButton Variant="Variant.Filled" Color="Color.Primary">Primary</MudButton>
