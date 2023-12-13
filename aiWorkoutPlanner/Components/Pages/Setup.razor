@@ -1,18 +1,31 @@
 ﻿@page "/setup"
 @using aiWorkoutPlanner.Framework
+@using SetupComponents
+@inject NavigationManager Navigation
 
 @code {
+    private int currentStep = 1; // Track the current step
 
+    private void GoToNextStep()
+    {
+        if (currentStep == 1)
+            currentStep = 2;
+        else if (currentStep == 2)
+            currentStep = 3;
+    }
 }
 
-<MudTimeline TimelineOrientation="TimelineOrientation.Horizontal">
-    <MudTimelineItem Color="Color.Primary" TimelineAlign="TimelineAlign.End">
-        <MudText>About You</MudText>
-    </MudTimelineItem>
-    <MudTimelineItem>
-        <MudText>Availability</MudText>
-    </MudTimelineItem>
-    <MudTimelineItem>
-        <MudText>Finalise</MudText>
-    </MudTimelineItem>
-</MudTimeline>
+@if (currentStep == 1)
+{
+    <Step1/>
+}
+else if (currentStep == 2)
+{
+    <Step2/>
+}
+else if (currentStep == 3)
+{
+    <Step3/>
+}
+
+<MudButton Variant="Variant.Filled" OnClick="() => GoToNextStep()" Color="Color.Primary">NEXT</MudButton>

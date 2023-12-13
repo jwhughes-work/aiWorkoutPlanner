@@ -1,5 +1,57 @@
-﻿<h3>Step1</h3>
+﻿@namespace SetupComponents
 
 @code {
 
 }
+
+<MudTimeline TimelineOrientation="TimelineOrientation.Horizontal" TimelinePosition="TimelinePosition.Top">
+    <MudTimelineItem Color="Color.Primary" Size="Size.Large">
+        <ItemContent>
+            <MudText Align="Align.Center">About You</MudText>
+        </ItemContent>
+    </MudTimelineItem>
+    <MudTimelineItem>
+        <ItemContent>
+            <MudText Align="Align.Center">Workout Length</MudText>
+        </ItemContent>
+    </MudTimelineItem>
+    <MudTimelineItem >
+        <ItemContent>
+            <MudText Align="Align.Center">Finalise Plan</MudText>
+        </ItemContent>
+    </MudTimelineItem>
+</MudTimeline>
+
+<MudDivider/>
+
+<div id="aboutme">
+    <MudPaper Class="ma-4 p-4" Elevation="5">
+        <MudForm>
+            <MudText Typo="Typo.h5">Gender: </MudText>
+            <div class="d-flex">
+                <MudRadioGroup T="string" Required="true" RequiredError="Gender is required!">
+                    <MudRadio Option="@("M")">Male</MudRadio>
+                    <MudRadio Option="@("F")">Female</MudRadio>
+                    <MudRadio Option="@("O")">Other</MudRadio>
+                </MudRadioGroup>
+            </div>
+            
+            <MudText Typo="Typo.h5">Weight: </MudText>
+            <MudTextField T="string" HelperText="Weight" Variant="Variant.Outlined" Adornment="Adornment.End" AdornmentText="Kg"/>
+            
+            <MudText Typo="Typo.h5">Height: </MudText>
+            <MudTextField T="string" HelperText="Height" Variant="Variant.Outlined" Adornment="Adornment.End" AdornmentText="Cm"/>
+
+            <MudText Typo="Typo.h5">Workout Type: </MudText>
+            <div class="d-flex">
+                <MudRadioGroup T="string" Required="true" RequiredError="Workout type is required!">
+                    <MudRadio Option="@("Strength")">Strength</MudRadio>
+                    <MudRadio Option="@("Weight")">Lose Weight</MudRadio>
+                    <MudRadio Option="@("Cardio")">Cardio</MudRadio>
+                    <MudRadio Option="@("Powerlifting")">Powerlifting</MudRadio>
+                    <MudRadio Option="@("Yoga")">Stretching/Yoga</MudRadio>
+                </MudRadioGroup>
+            </div>
+        </MudForm>   
+    </MudPaper>
+</div>
