@@ -22,10 +22,10 @@
         <Nullable>enable</Nullable>
 
         <!-- Display name -->
-        <ApplicationTitle>aiWorkoutPlanner</ApplicationTitle>
+        <ApplicationTitle>FitPA</ApplicationTitle>
 
         <!-- App Identifier -->
-        <ApplicationId>com.companyname.aiworkoutplanner</ApplicationId>
+        <ApplicationId>com.jwhsolutions.fitpa</ApplicationId>
 
         <!-- Versions -->
         <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
@@ -45,7 +45,7 @@
         <MauiIcon Include="Resources\AppIcon\apppicon.png" />
 
         <!-- Splash Screen -->
-        <MauiSplashScreen Include="Resources\Splash\splashscreen.png" BaseSize="10024,1024" />
+        <MauiSplashScreen Include="Resources\Splash\splashscreen.png" BaseSize="128,128" Color="#512BD4" />
 
         <!-- Images -->
         <MauiImage Include="Resources\Images\*" />
@@ -71,9 +71,4 @@
         <PackageReference Include="MudBlazor.ThemeManager" Version="1.0.8" />
         <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.0.3" />
     </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="wwwroot\lib\shepherd.js\js\" />
-    </ItemGroup>
-
 </Project>
