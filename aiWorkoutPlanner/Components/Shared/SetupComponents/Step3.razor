@@ -1,7 +1,13 @@
 ﻿@namespace SetupComponents
 
 @code {
+    
+    [Parameter] public EventCallback OnStepGoBack { get; set; }
 
+    private async Task CancelStep()
+    {
+        await OnStepGoBack.InvokeAsync(null);
+    }
 }
 
 <MudTimeline TimelineOrientation="TimelineOrientation.Horizontal" TimelinePosition="TimelinePosition.Top">
@@ -12,7 +18,7 @@
     </MudTimelineItem>
     <MudTimelineItem >
         <ItemContent>
-            <MudText Align="Align.Center">Workout Length</MudText>
+            <MudText Align="Align.Center">Workout Info</MudText>
         </ItemContent>
     </MudTimelineItem>
     <MudTimelineItem Color="Color.Success" Size="Size.Large" >

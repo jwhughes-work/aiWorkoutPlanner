@@ -8,24 +8,26 @@
 
     private void GoToNextStep()
     {
-        if (currentStep == 1)
-            currentStep = 2;
-        else if (currentStep == 2)
-            currentStep = 3;
+        currentStep++;
+    }
+
+    private void ToBackStep()
+    {
+        currentStep--;
     }
 }
 
 @if (currentStep == 1)
 {
-    <Step1/>
+    <Step1 OnStepCompleted="GoToNextStep" />
 }
 else if (currentStep == 2)
 {
-    <Step2/>
+    <Step2 OnStepCompleted="GoToNextStep" OnStepGoBack="ToBackStep" />
 }
 else if (currentStep == 3)
 {
-    <Step3/>
+    <Step3 OnStepGoBack="ToBackStep" />
 }
 
-<MudButton Variant="Variant.Filled" OnClick="() => GoToNextStep()" Color="Color.Primary">NEXT</MudButton>
+@* <MudButton Variant="Variant.Filled" OnClick="() => GoToNextStep()" Color="Color.Primary">NEXT</MudButton> *@

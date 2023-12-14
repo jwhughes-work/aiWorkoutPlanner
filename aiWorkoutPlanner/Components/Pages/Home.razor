@@ -6,6 +6,8 @@
 @code {
     protected override async Task OnInitializedAsync()
     {
+        //https://learn.microsoft.com/en-us/dotnet/maui/ios/apple-account-management?view=net-maui-8.0&tabs=vs
+        //use the above to setup for ios properly
         var authState = await AuthStateProvider.GetAuthenticationStateAsync();
         var user = authState.User;
 
