@@ -17,23 +17,32 @@
 
 <div class="page">
     <main>
-        <article class="content px-4">
+        <article class="content px-4" style="background-color: aqua">
             @Body
         </article>
     </main>
     
-    <footer class="nav-bar">
-        <MudButton OnClick="@(() => NavigateTo("/"))" StartIcon="@Icons.Material.Filled.Home">
-            <span class="nav-text">Home</span>
-        </MudButton>
-        <MudButton OnClick="@(() => NavigateTo(""))" StartIcon="@Icons.Material.Filled.Search">
-            <span class="nav-text">Search</span>
-        </MudButton>
-        <MudButton OnClick="@(() => NavigateTo(""))" StartIcon="@Icons.Material.Filled.Notifications">
-            <span class="nav-text">Notifications</span>
-        </MudButton>
-        <MudButton OnClick="@(() => NavigateTo("/Login"))" StartIcon="@Icons.Material.Filled.AccountCircle">
-            <span class="nav-text">Profile</span>
-        </MudButton>
+    <footer class="nav-bar" style="background-color: red;">
+        <div class="col">
+            <MudButton OnClick="@(() => NavigateTo("/"))" StartIcon="@Icons.Material.Filled.Home" Style="width: -webkit-fill-available; height: -webkit-fill-available;">
+                <span class="nav-text">Home</span>
+            </MudButton>
+        </div>
+        <div class="col">
+            <MudButton OnClick="@(() => NavigateTo(""))" StartIcon="@Icons.Material.Filled.Search" Style="width: -webkit-fill-available; height: -webkit-fill-available;">
+                <span class="nav-text">Search</span>
+            </MudButton>
+        </div>
+        <div class="col">
+            <MudButton OnClick="@(() => NavigateTo(""))" StartIcon="@Icons.Material.Filled.Notifications" Style="width: -webkit-fill-available; height: -webkit-fill-available;">
+                <span class="nav-text">Notifications</span>
+            </MudButton>
+        </div>
+        <div class="col">
+            <MudButton OnClick="@(() => NavigateTo("/Login"))" StartIcon="@Icons.Material.Filled.AccountCircle" Style="width: -webkit-fill-available; height: -webkit-fill-available;">
+                <span class="nav-text">Profile</span>
+            </MudButton>
+        </div>
+       
     </footer>
 </div>
