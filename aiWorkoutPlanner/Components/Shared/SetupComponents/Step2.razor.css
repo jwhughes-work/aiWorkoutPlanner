@@ -1,0 +1,62 @@
+﻿.container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    padding: 16px;
+}
+
+.left-column {
+    flex: 0 0 auto; /* Do not grow or shrink, but be automatically sized by its content */
+    padding: 8px;
+}
+
+.right-column {
+    flex: 1; /* Take up the remaining space */
+    padding: 8px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.checkbox-group {
+    flex: 1 1 auto; /* Allow wrapping */
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.mud-checkbox {
+    flex: 1 1 45%; /* Adjust width to fit 2 checkboxes in a row */
+    margin: 4px; /* Spacing between checkboxes */
+}
+
+.divider {
+    display: none; /* Hidden by default */
+}
+
+/* For wide screens */
+@media (min-width: 768px) {
+    .left-column {
+        width: 30%; /* Set the width of the left column as required */
+    }
+
+    .right-column {
+        width: 70%; /* Set the width of the right column to take up the rest */
+    }
+
+    .divider {
+        display: block;
+        margin: 0 16px;
+    }
+}
+
+/* For narrow screens */
+@media (max-width: 767px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .left-column,
+    .right-column {
+        width: 100%; /* Each column takes full width on narrow screens */
+    }
+}

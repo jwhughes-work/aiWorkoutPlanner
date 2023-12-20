@@ -37,37 +37,63 @@
 <MudDivider Class="mt-4" />
 
 <div id="workoutInfo">
-    <MudPaper Class="mt-4 p-4" Elevation="5">
+    <MudPaper Class="my-4 p-4" Elevation="5">
         <MudForm>
-            <MudText Typo="Typo.h6">Gender: </MudText>
-            <div class="d-flex">
-                <MudRadioGroup T="string" Required="true" RequiredError="Gender is required!">
-                    <MudRadio Option="@("M")">Male</MudRadio>
-                    <MudRadio Option="@("F")">Female</MudRadio>
-                    <MudRadio Option="@("O")">Other</MudRadio>
-                </MudRadioGroup>
-            </div>
-
-            <MudText Typo="Typo.h6">Weight: </MudText>
-            <MudTextField T="string" HelperText="Weight" Variant="Variant.Outlined" Adornment="Adornment.End" AdornmentText="Kg" />
-
-            <MudText Typo="Typo.h6">Height: </MudText>
-            <MudTextField T="string" HelperText="Height" Variant="Variant.Outlined" Adornment="Adornment.End" AdornmentText="Cm" />
-
+            <MudText Typo="Typo.h6">Brief Goal of Workout: </MudText>
+            <MudTextField T="string" HelperText="Build Muscle..." Variant="Variant.Outlined"/>
+            
             <MudText Typo="Typo.h6">Workout Type: </MudText>
             <div class="d-flex">
                 <MudRadioGroup T="string" Required="true" RequiredError="Workout type is required!">
                     <MudRadio Option="@("Strength")">Strength</MudRadio>
-                    <MudRadio Option="@("Weight")">Lose Weight</MudRadio>
-                    <MudRadio Option="@("Cardio")">Cardio</MudRadio>
-                    <MudRadio Option="@("Powerlifting")">Powerlifting</MudRadio>
-                    <MudRadio Option="@("Yoga")">Stretching/Yoga</MudRadio>
+                    <MudRadio Disabled="true" Option="@("Weight")">Lose Weight</MudRadio>
+                    <MudRadio Disabled="true" Option="@("Cardio")">Cardio</MudRadio>
+                    <MudRadio Disabled="true" Option="@("Powerlifting")">Powerlifting</MudRadio>
+                    <MudRadio Disabled="true" Option="@("Yoga")">Stretching/Yoga</MudRadio>
                 </MudRadioGroup>
             </div>
+            
+            <MudText Typo="Typo.h6">Focus On: </MudText>
+            <div class="container">
+                <div class="left-column">
+                    <MudRadioGroup T="string" Style="display: flex; flex-direction: column">
+                        <MudRadio Dense="true" Option="@("Full")">Full Body</MudRadio>
+                        <MudRadio Dense="true" Option="@("Upper")">Upper Body</MudRadio>
+                        <MudRadio Dense="true" Option="@("Lower")">Lower Body</MudRadio>
+                        <MudRadio Dense="true" Option="@("Custom")">Custom</MudRadio>
+                    </MudRadioGroup>
+                </div>
+                <MudDivider Vertical="true" FlexItem="true" class="divider"/>
+                <div class="right-column">
+                    <div class="checkbox-group">
+                        <MudCheckBox T="bool" Label="Abs" Color="Color.Success" CheckedIcon="@Icons.Material.Filled.Star" UncheckedIcon="@Icons.Material.Filled.StarOutline"></MudCheckBox>
+                        <MudCheckBox T="bool" Label="Back" Color="Color.Success" CheckedIcon="@Icons.Material.Filled.Star" UncheckedIcon="@Icons.Material.Filled.StarOutline"></MudCheckBox>
+                        <MudCheckBox T="bool" Label="Arms" Color="Color.Success" CheckedIcon="@Icons.Material.Filled.Star" UncheckedIcon="@Icons.Material.Filled.StarOutline"></MudCheckBox>
+                        <MudCheckBox T="bool" Label="Chest" Color="Color.Success" CheckedIcon="@Icons.Material.Filled.Star" UncheckedIcon="@Icons.Material.Filled.StarOutline"></MudCheckBox>
+                        <MudCheckBox T="bool" Label="Glutes" Color="Color.Success" CheckedIcon="@Icons.Material.Filled.Star" UncheckedIcon="@Icons.Material.Filled.StarOutline"></MudCheckBox>
+                        <MudCheckBox T="bool" Label="Legs" Color="Color.Success" CheckedIcon="@Icons.Material.Filled.Star" UncheckedIcon="@Icons.Material.Filled.StarOutline"></MudCheckBox>
+                        <MudCheckBox T="bool" Label="Shoulders" Color="Color.Success" CheckedIcon="@Icons.Material.Filled.Star" UncheckedIcon="@Icons.Material.Filled.StarOutline"></MudCheckBox>
+                        <MudCheckBox T="bool" Label="Cardio" Color="Color.Success" CheckedIcon="@Icons.Material.Filled.Star" UncheckedIcon="@Icons.Material.Filled.StarOutline"></MudCheckBox>
+                    </div>
+                </div>
+            </div>
+            
+            <MudText Typo="Typo.h6">Available Equipment: </MudText>
+            <div class="d-flex">
+                <MudCheckBox T="bool" Label="Bands" Color="Color.Success" CheckedIcon="@Icons.Material.Filled.Star" UncheckedIcon="@Icons.Material.Filled.StarOutline"></MudCheckBox>
+                <MudCheckBox T="bool" Label="Barbell" Color="Color.Success" CheckedIcon="@Icons.Material.Filled.Star" UncheckedIcon="@Icons.Material.Filled.StarOutline"></MudCheckBox>
+                <MudCheckBox T="bool" Label="Bench" Color="Color.Success" CheckedIcon="@Icons.Material.Filled.Star" UncheckedIcon="@Icons.Material.Filled.StarOutline"></MudCheckBox>
+                <MudCheckBox T="bool" Label="Dunbell" Color="Color.Success" CheckedIcon="@Icons.Material.Filled.Star" UncheckedIcon="@Icons.Material.Filled.StarOutline"></MudCheckBox>
+               @*  <MudCheckBox T="bool" Label="Cables" Color="Color.Success" CheckedIcon="@Icons.Material.Filled.Star" UncheckedIcon="@Icons.Material.Filled.StarOutline"></MudCheckBox>
+                <MudCheckBox T="bool" Label="Machines (Strength)" Color="Color.Success" CheckedIcon="@Icons.Material.Filled.Star" UncheckedIcon="@Icons.Material.Filled.StarOutline"></MudCheckBox>
+                <MudCheckBox T="bool" Label="Machines (Cardio)" Color="Color.Success" CheckedIcon="@Icons.Material.Filled.Star" UncheckedIcon="@Icons.Material.Filled.StarOutline"></MudCheckBox>
+                <MudCheckBox T="bool" Label="Mats + Yoga Area" Color="Color.Success" CheckedIcon="@Icons.Material.Filled.Star" UncheckedIcon="@Icons.Material.Filled.StarOutline"></MudCheckBox> *@
+            </div>
+            <MudFab StartIcon="@Icons.Material.Filled.Add" Label="Add Equipment" Size="Size.Small" />
 
             <div class="row">
                 <div class="col">
-                    <MudButton Variant="Variant.Outlined" Color="Color.Warning" FullWidth="true">Back</MudButton>
+                    <MudButton OnClick="() => CancelStep()" Variant="Variant.Outlined" Color="Color.Warning" FullWidth="true">Back</MudButton>
                 </div>
                 <div class="col">
                     <MudButton OnClick="() => CompleteStep()" Variant="Variant.Outlined" Color="Color.Primary" FullWidth="true">Next Step</MudButton>
